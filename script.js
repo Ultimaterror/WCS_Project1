@@ -4,8 +4,11 @@
 function showFinalResult() {
     let finalSentence;
     // Changer les conditions en fonction de quiz.length
+    // if (finalResult <= Math.round(quiz.length / 5)) {
     if (finalResult <= 1) {
         finalSentence = "Dommage ! Tu feras mieux la prochaine fois.";
+
+    // if (finalResult <= Math.round(quiz.length / 5 * 3)) {
     } else if (finalResult <= 3) {
         finalSentence = "Bien mais tu peux encore t'améliorer.";
     } else {
