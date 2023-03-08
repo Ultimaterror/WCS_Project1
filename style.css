@@ -1,0 +1,70 @@
+.title {
+    text-align: center;
+    border: solid;
+    width: 70%;
+    align-items: center;
+    display: flex;
+    margin-bottom: 10%;
+}
+
+.startButtonCard {
+    width: 30%;
+}
+.startButton, .submitButton {
+    text-align: center;
+    color: white;
+    display: inline-block;
+    padding: 9px 15px;
+    text-decoration: none;
+    background-color: #2A9D8F;
+    border-radius: 4% 4%;
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+
+.questions {
+    background-color: #2A9D8F;
+    color: white;
+}
+.questionNumber {
+    text-align: center;
+    margin-bottom: 7%;
+}
+
+.radioInput {
+    padding: 1%;
+}
+
+.buttons {
+    justify-content: space-between;
+}
+
+#questionSuivanteButton, #submitButton {
+    text-align: center;
+    color: white;
+    background-color: #2A9D8F;
+    display: inline-block;
+    padding: 9px 5px;
+    text-decoration: none;
+    border-radius: 4% 4%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-right: 1%;
+    border:none;
+}
+
+.infosReponse {
+    text-align: center;
+    color: white;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    background-color: #404040;
+}
+
+.bonneReponse {
+    color: red;
+}
+
+.mauvaiseReponse {
+    color: green;
+}
