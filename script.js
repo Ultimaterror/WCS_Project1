@@ -1,5 +1,5 @@
 let finalResult = 0;
 
-function countResult () {
+function addFinalResult () {
     finalResult++;
 }
