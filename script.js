@@ -7,6 +7,8 @@ let quiz = [
         inputValue2: "anatidaephobie",
         label3: "La cynophobie",
         inputValue3: "cynophobie",
+        label4: "L'arachnophobie'",
+        inputValue4: "arachnophobie",
         goodAnswer: "anatidaephobie",
         infos: "On ne sait jamais si un canard est dans le coin et qu'il vous regarde du coin de l'oeil"
     }
