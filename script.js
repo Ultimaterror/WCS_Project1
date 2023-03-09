@@ -18,3 +18,8 @@ if(response == quiz[answer]){
 
 //Renvoyer si juste ou faux
 
+let finalResult = 0;
+
+function addFinalResult () {
+    finalResult++;
+}
