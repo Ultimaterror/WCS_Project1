@@ -1,3 +1,9 @@
+let i = 0;
+
+function nextQuestion(){
+    showQuestion();
+    i++;
+}
 //Conditions if
 //ESSAI n°1
 let answer = quiz[goodAnswer];//vérifier comment est enregistré les réponses dans le JS
