@@ -80,3 +80,15 @@ function showQuestion() {
     label4.innerText = quiz[i].label4;
 
 }
+
+// function affiche texte bonne ou mauvaise reponse.
+let rightAnswer = document.getElementById('vrai');
+let wrongAnswer = document.getElementById('faux');
+
+function textAnswer(){
+    if(rightAnswer === true){
+        rightAnswer.classList.add('vraiText');
+    }else{
+        wrongAnswer.classList.add('fauxText');
+    }
+}
