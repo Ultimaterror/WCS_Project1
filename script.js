@@ -1,3 +1,32 @@
+let db = [
+    {
+        question: "A1"
+    },
+    {
+        question: "B2"
+    },
+    {
+        question: "C3"
+    },
+    {
+        question: "D4"
+    },
+    {
+        question: "K6"
+    },
+]
+
+let quiz = [];
+
+function randomize (number) {
+    for (let index = 0; index < number; index++) {
+        quiz.push(db.splice(Math.floor(Math.random() * db.length), 1));
+    }
+    return;
+}
+randomize(2);
+
+
 let i = 0;
 
 function nextQuestion(){
