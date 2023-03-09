@@ -3,6 +3,7 @@
     --font-color : white;
     --border-radius: 5px;
     --section-padding : 2%;
+    --text-shadow: 2px 1px black;
 }
 
 .title {
@@ -29,7 +30,21 @@
     margin-bottom: 10%;
     margin-top: 10%;
 }
+#vrai {
+    display: none;
+    justify-content: center;
+    font-weight: bold;
+    color: green;
+    text-shadow: var(--text-shadow)
+}
 
+#faux{
+    display:none;
+    justify-content: center;
+    font-weight: bold;
+    color: red;
+    text-shadow: var(--text-shadow)
+}
 .questions {
     background-color: var(--main-color);
     color: var(--font-color);
