@@ -121,3 +121,20 @@ let quiz = [
         infos: "Savez-vous qu'il existe aussi le requin lézard, le requin taureau, le requin dormeur, le requin vache ou encore le squale à peau douce."
 }
 ]
+let bonneReponse = document.getElementById('#');
+let mauvaiseReponses = document.getElementById('#');
+
+
+
+
+
+function colorReponse(){
+   
+    
+    if(reponseSelectioner === mauvaiseReponses){
+       reponseSelectioner.classList.add('mauvaiseReponse');
+       bonneReponse = bonneReponse.classList.add('bonneReponse');
+    }else{
+       reponseSelectioner.classList.add('bonneReponse');
+    }
+}

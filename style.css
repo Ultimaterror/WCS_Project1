@@ -45,6 +45,17 @@
     color: red;
     text-shadow: var(--text-shadow)
 }
+
+
+/* class ajouter sur la div du texte bonne ou mauvaise reponse sur js */
+.vraiText{
+    display: flex;
+}
+.fauxText{
+    display:flex;
+}/* class ajouter sur la div du texte bonne ou mauvaise reponse sur js */
+
+
 .questions {
     background-color: var(--main-color);
     color: var(--font-color);
@@ -97,9 +108,10 @@
 }
 
 .bonneReponse {
-    color: red;
+    background-color :green ;
+
 }
 
 .mauvaiseReponse {
-    color: green;
+    background-color: red;
 }
