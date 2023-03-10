@@ -1,29 +1,28 @@
 let i = 0;
 
-function nextQuestion(){
+//Checker les réponses --------------------------------------------
+function submitQuestion(){
     showQuestion();
     i++;
 }
-//Conditions if
-//ESSAI n°1
-let answer = quiz[goodAnswer];//vérifier comment est enregistré les réponses dans le JS
-let response = document.getElementById().value//trouver l'ID des boutons radio
-let score = 0;
-if(response == quiz[answer]){
-    //on modifie les couleurs des réponses (vert = OK, rouge = BAD)
-    //on affiche "Vrai" ou "Faux"
-    //on rend le bouton "question suivante" visible/cliquable
-    score++;
+//let answer = quiz[goodAnswer]; // BUG CAR PAS LE QUIZZ
+let userAnswer = document.querySelectorAll('input[name="inputRadio"]');
+for (const i of userAnswer){
+    if(i.checked){
+        answer = i.value;
+    }
 }
 
-//DOM
-
-
-//Enregistrer le résultat
-
-
-//Renvoyer si juste ou faux
-
+const nextQuestionButton = document.getElementById('questionSuivanteButton');
+nextQuestionButton.disabled = true;
+function checkAnswer() {
+    if(answer == quiz[answer]){        
+        //document.getElementById('vrai').style.display='flex'; //on affiche "Vrai"
+        nextQuestion.disabled = false;//on rend le bouton "question suivante" visible/cliquable
+        addFinalResult();//incrémentation du score
+    } //document.getElementById('faux').style.display='flex'; //on affiche "Faux"
+}
+//FIN -- Checker les réponses --------------------------------------
 
 let finalResult = 0;
 // quiz : le tableau où il y a toutes les questions

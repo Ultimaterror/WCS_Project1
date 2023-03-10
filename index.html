@@ -18,24 +18,25 @@
         <div class="questionNumber">Question N° :</div>
         <div class="vrai" id="vrai">Bonne réponse 😎</div>
         <div class="faux" id="faux">Mauvaise réponse 😕</div>
-        <div class="radios">
-            <div class="radioInput">
-                <input id="radio1" class="radio" type="radio" name="inputRadio">
+        <form class="radios" id="test">
+            <div class="radioInput" id="inputRadio" value="essai value">
+                <input id="radio1" class="radio" type="radio" name="inputRadio" value="input1">
                 <label id="label1" for="radio1">TEST 1</label>
             </div>
             <div class="radioInput">
-                <input id="radio2" class="radio" type="radio" name="inputRadio">
+                <input id="radio2" class="radio" type="radio" name="inputRadio" value="input2">
                 <label id="label2" for="radio2">TEST 2</label>
             </div>
             <div class="radioInput">
-                <input id="radio3" class="radio" type="radio" name="inputRadio">
+                <input id="radio3" class="radio" type="radio" name="inputRadio" value="input3">
                 <label id="label3" for="radio3">TEST 3</label>
             </div>
             <div class="radioInput">
-                <input id="radio4" class="radio" type="radio" name="inputRadio">
+                <input id="radio4" class="radio" type="radio" name="inputRadio" value="input4">
                 <label id="label4" for="radio4">TEST 4</label>
             </div>
-        </div>
+            <button id="submitButton" onclick="submitQuestion()">Soumettre</button>
+        </form>
     </div>
 
     <div class="infosReponse">
@@ -46,8 +47,7 @@
     </div>
 
     <div class="buttons" id="buttons">
-        <button id="submitButton">Soumettre</button>
-        <button id="questionSuivanteButton">Question suivante</button>
+        <button type="button" id="questionSuivanteButton" disabled>Question suivante</button>
     </div>
 
     <script src="script.js"></script>
