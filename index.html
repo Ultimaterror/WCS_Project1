@@ -12,12 +12,17 @@
     <div class="title">WCS Quizz Animaux</div>
     
 
-    <!-- <div class="startButtonCard">
-        <button class="startButton">Démarrer</button>
-    </div> -->
+    <div class="startButtonCard">
+        <button class="startButton" onclick="start()">Démarrer</button>
+    </div>
 
     <div class="questions">
-        <div class="questionNumber">Question N° :</div>
+        <div class="questionNumber">
+            <p>Question N° : <span id="questionNumber"></span></p> 
+        </div>
+        <div>
+            <p id="question"></p>
+        </div>
         <div class="vrai" id="vrai">Bonne réponse 😎</div>
         <div class="faux" id="faux">Mauvaise réponse 😕</div>
         <form class="radios" id="test">
@@ -37,7 +42,7 @@
                 <input id="radio4" class="radio" type="radio" name="inputRadio" value="input4">
                 <label id="label4" for="radio4">TEST 4</label>
             </div>
-            <button id="submitButton" onclick="submitQuestion()">Soumettre</button>
+            
         </form>
     </div>
 
@@ -49,6 +54,7 @@
     </div>
 
     <div class="buttons" id="buttons">
+        <button id="submitButton" onclick="checkAnswer()">Soumettre</button>
         <button type="button" id="questionSuivanteButton" disabled>Question suivante</button>
     </div>
 
