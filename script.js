@@ -73,6 +73,10 @@ function nextQuestion() {
     i++;
     if (i < quiz.length) {
         showQuestion();
+        //bouton "submit" apparait
+        submitButton.disable = false;
+        //bouton "question suivante" disparait
+        nextQuestion.disabled = true;
     } else {
         showFinalResult()
     }
@@ -131,7 +135,7 @@ let submitButton = document.getElementById("submitButton");
 function checkAnswer() {
     // Verifier qu'il y a un input selectionné
     let answer = form.elements.inputRadio.value;
-    console.log(answer);
+    //console.log(answer);
     if (answer === "") {
         // console.log("passe pas");
         return
@@ -177,7 +181,8 @@ function checkAnswer() {
 
     // Le bouton question suivante est disponible
     nextQuestion.disabled = false;//on rend le bouton "question suivante" visible/cliquable
-
+    //bouton "submit" disparait
+    submitButton.disable = true;
 
 }
 
@@ -186,11 +191,6 @@ function checkAnswer() {
 
 // Une fois toutes les questions finies
 // Afficher le résultat final
-
-
-
-
-//FIN -- Checker les réponses --------------------------------------
 
 
 function addFinalResult() {
@@ -227,24 +227,24 @@ function showFinalResult() {
 
 
 
-// submitButton.addEventListener('click', () => {
-//     let infoDiv = document.getElementById('infoDiv');
-//     let infoP = document.createElement('p');
+submitButton.addEventListener('click', () => {
+    let infoDiv = document.getElementById('infoDiv');
+    let infoP = document.createElement('p');
 
-//     infoDiv.appendChild(infoP);
-//     infoP.classList.add('infoM');
-//     infoP.innerHTML = quiz.infos;
+    infoDiv.appendChild(infoP);
+    infoP.classList.add('infoM');
+    infoP.innerHTML = quiz.infos;
 
-// })
+})
 
 
 // function affiche texte bonne ou mauvaise reponse.
 
 
-// function textAnswer() {
-//     if (rightAnswer === true) {
-//         rightAnswer.classList.add('vraiText');
-//     } else {
-//         wrongAnswer.classList.add('fauxText');
-//     }
-// }
+function textAnswer() {
+     if (rightAnswer === true) {
+         rightAnswer.classList.add('vraiText');
+     } else {
+         wrongAnswer.classList.add('fauxText');
+     }
+ }
