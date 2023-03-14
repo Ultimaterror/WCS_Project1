@@ -64,6 +64,8 @@ let infoDiv = document.getElementById('infoDiv');
 
 
 function start() {
+    const startButtonCard = document.getElementsByClassName("startButtonCard");
+    startButtonCard.remove();
     nextQuestion();
 }
 
@@ -211,13 +213,7 @@ function showFinalResult() {
 }
 
 
-//supprimer button start 
-const startButton = document.getElementsByClassName("startButton");
 
-startButton.addEventListener('click', () => {
-    const startButtonCard = document.getElementsByClassName("startButtonCard");
-    startButtonCard.remove();
-});
 
 
 
