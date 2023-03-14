@@ -30,7 +30,8 @@
     margin-bottom: 10%;
     margin-top: 10%;
 }
-#vrai{
+
+.vrai{
     display: none;
     justify-content: center;
     font-weight: bold;
@@ -38,31 +39,13 @@
     text-shadow: var(--text-shadow)
 }
 
-#faux{
+.faux{
     display:none;
     justify-content: center;
     font-weight: bold;
     color: red;
     text-shadow: var(--text-shadow)
 }
-
-
-/* class ajouter sur la div du texte bonne ou mauvaise reponse sur js */
-.vraiText{
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    color: green;
-    text-shadow: var(--text-shadow)
-}
-.fauxText{
-    display:flex;
-    justify-content: center;
-    font-weight: bold;
-    color: red;
-    text-shadow: var(--text-shadow)
-}/* class ajouter sur la div du texte bonne ou mauvaise reponse sur js */
-
 
 .questions {
     background-color: var(--main-color);
@@ -122,4 +105,8 @@
 
 .mauvaiseReponse {
     background-color: red;
+}
+
+.visible {
+    display: block;
 }

@@ -56,10 +56,11 @@ let form = document.querySelector("form");
 
 
 let finalResult = 0;
-let rightAnswer = document.getElementById('vrai');
-let wrongAnswer = document.getElementById('faux');
-let bonneReponse = document.getElementById('#');
-let mauvaiseReponses = document.getElementById('#');
+
+let rightText = document.getElementById('vrai');
+let wrongText = document.getElementById('faux');
+
+let infoArea = document.querySelector('.infosReponse')
 let infoDiv = document.getElementById('infoDiv');
 
 
@@ -87,29 +88,42 @@ function showQuestion() {
     let question = document.getElementById("question");
     question.innerText = quiz[i].question;
 
+    for (let index = 0; index < quiz.length; index++) {
+        const element = quiz[index];
+        
+    }
+
     let radio1 = document.getElementById("radio1");
     radio1.value = quiz[i].inputValue1;
+    radio1.id = quiz[i].inputValue1;
 
     let label1 = document.getElementById("label1");
     label1.innerText = quiz[i].label1;
+    label1.htmlFor = quiz[i].inputValue1;
 
     let radio2 = document.getElementById("radio2");
     radio2.value = quiz[i].inputValue2;
+    radio2.id = quiz[i].inputValue2;
 
     let label2 = document.getElementById("label2");
     label2.innerText = quiz[i].label2;
+    label1.htmlFor = quiz[i].inputValue1;
 
     let radio3 = document.getElementById("radio3");
     radio3.value = quiz[i].inputValue3;
+    radio3.id = quiz[i].inputValue3;
 
     let label3 = document.getElementById("label3");
     label3.innerText = quiz[i].label3;
+    label1.htmlFor = quiz[i].inputValue1;
 
     let radio4 = document.getElementById("radio4");
     radio4.value = quiz[i].inputValue4;
+    radio4.id = quiz[i].inputValue4;
 
     let label4 = document.getElementById("label4");
     label4.innerText = quiz[i].label4;
+    label1.htmlFor = quiz[i].inputValue1;
 
 }
 
@@ -124,7 +138,7 @@ function showQuestion() {
 
 
 const nextQuestionButton = document.getElementById('questionSuivanteButton');
-nextQuestionButton.disabled = true;
+// nextQuestionButton.disabled = true;
 
 let submitButton = document.getElementById("submitButton");
 
@@ -133,19 +147,20 @@ function checkAnswer() {
     let answer = form.elements.inputRadio.value;
     console.log(answer);
     if (answer === "") {
-        // console.log("passe pas");
+        console.log("passe pas");
         return
     }
-    // console.log("passe");
+    console.log("passe");
 
     if (answer == quiz[i].goodAnswer) {
         // Si bonne réponse
 
         // Afficher le texte "bonne réponse"
-        rightAnswer.classList.add('vraiText');
+        rightText.classList.add('visible');
 
         // Mettre la réponse en vert
-        reponseSelectioner.classList.add('bonneReponse');
+        let bonneReponse = document.getElementById(answer);
+        bonneReponse.nextElementSibling.classList.add('bonneReponse');
 
         // Ajouter au compteur
         addFinalResult();
@@ -154,13 +169,15 @@ function checkAnswer() {
         // Si mauvaise réponse
 
         // Afficher le texte "mauvaise réponse"
-        wrongAnswer.classList.add('fauxText');
+        wrongText.classList.add('visible');
 
         // Mettre la mauvaise réponse en rouge
-        reponseSelectioner.classList.add('mauvaiseReponse');
+        let mauvaiseReponse = document.getElementById(answer);
+        mauvaiseReponse.nextElementSibling.classList.add('mauvaiseReponse');
 
         // Mettre la bonne réponse en vert
-        bonneReponse.classList.add('bonneReponse');
+        let bonneReponse = document.getElementById(quiz[i].goodAnswer);
+        bonneReponse.nextElementSibling.classList.add('bonneReponse');
 
 
 
@@ -170,9 +187,10 @@ function checkAnswer() {
     // Affiche la div infos
     let infoP = document.createElement('p');
 
+    infoArea.classList.add('visible')
     infoDiv.appendChild(infoP);
-    infoP.classList.add('infoM');
-    infoP.innerHTML = quiz.infos;
+    infoP.innerHTML = quiz[i].infos;
+
 
 
     // Le bouton question suivante est disponible
@@ -242,9 +260,9 @@ function showFinalResult() {
 
 
 // function textAnswer() {
-//     if (rightAnswer === true) {
-//         rightAnswer.classList.add('vraiText');
+//     if (rightText === true) {
+//         rightText.classList.add('vraiText');
 //     } else {
-//         wrongAnswer.classList.add('fauxText');
+//         wrongText.classList.add('fauxText');
 //     }
 // }
