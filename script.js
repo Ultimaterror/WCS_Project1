@@ -44,6 +44,8 @@ let infoDiv = document.getElementById('infoDiv');
 
 
 function start() {
+    const startButtonCard = document.getElementsByClassName("startButtonCard");
+    startButtonCard.remove();
     nextQuestion();
 }
 
@@ -174,6 +176,12 @@ function showFinalResult() {
     }
     // return DOM.innerText = finalSentence;
 }
+
+
+
+
+
+
 
 
 
