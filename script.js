@@ -138,6 +138,8 @@ function showQuestion() {
         //pour enlever la couleur des labels
         label.classList.remove('goodInput');
         label.classList.remove('wrongInput');
+        label.parentElement.classList.remove('hidePhone');
+        label.previousElementSibling.disabled = false;
     }
 }
 
@@ -149,15 +151,24 @@ function checkAnswer() {
         return wrongRightText.innerHTML = "Veuillez sélectionner une réponse."
     }
 
+    for (let index = 0; index < quiz[i].labels.length; index++) {
+        let label = document.getElementById("label" + (index + 1))  //je récupère mon label dans l'HTML
+        //pour cacher les labels sur phone
+        label.parentElement.classList.add('hidePhone');
+        label.previousElementSibling.disabled = true;
+    }
+
     if (answer == quiz[i].goodAnswer) {
         // Si bonne réponse
 
         // Afficher le texte "bonne réponse"
         wrongRightText.classList.add('right');
         wrongRightText.innerHTML = "Bonne réponse 😎";
-
+        
+        
         // Mettre la réponse en vert
         let goodInput = document.getElementById("label" + quiz[i].goodAnswer);
+        goodInput.parentElement.classList.remove('hidePhone');
         goodInput.classList.add('goodInput');
 
         // Ajouter au compteur
@@ -173,10 +184,12 @@ function checkAnswer() {
 
         // Mettre la mauvaise réponse en rouge
         let wrongInput = document.getElementById("label" + answer);
+        wrongInput.parentElement.classList.remove('hidePhone');
         wrongInput.classList.add('wrongInput');
 
         // Mettre la bonne réponse en vert
         let goodInput = document.getElementById("label" + quiz[i].goodAnswer);
+        goodInput.parentElement.classList.remove('hidePhone');
         goodInput.classList.add('goodInput');
     }
 
