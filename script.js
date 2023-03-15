@@ -139,6 +139,7 @@ function showQuestion() {
         label.classList.remove('goodInput');
         label.classList.remove('wrongInput');
         label.parentElement.classList.remove('hidePhone');
+        label.previousElementSibling.disabled = false;
     }
 }
 
@@ -154,6 +155,7 @@ function checkAnswer() {
         let label = document.getElementById("label" + (index + 1))  //je récupère mon label dans l'HTML
         //pour cacher les labels sur phone
         label.parentElement.classList.add('hidePhone');
+        label.previousElementSibling.disabled = true;
     }
 
     if (answer == quiz[i].goodAnswer) {
