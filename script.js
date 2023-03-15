@@ -49,7 +49,7 @@ let db = [
         infos: "un oeuf d'autruche pèse entre 1,2 et 1,8kg."
     }
 ]
-
+let quizLength = 8;
 let quiz = [];
 function randomize(number) {
     for (let index = 0; index < number; index++) {
@@ -58,7 +58,7 @@ function randomize(number) {
     console.log(quiz);
     return;
 }
-randomize(2);
+randomize(quizLength);
 
 let form = document.querySelector("form");
 // console.log(form);
@@ -76,6 +76,9 @@ let main = document.querySelector(".questions");
 
 
 function start() {
+    //on affiche le nombre total de questions à côté du numéro de la question actuelle :
+    const totalQuestions = document.getElementById("quizLength");
+    totalQuestions.innerHTML = quizLength;
     const startButtonCard = document.querySelector(".startButtonCard");
     startButtonCard.remove();
     main.classList.add('visible');
