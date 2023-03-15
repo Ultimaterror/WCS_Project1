@@ -1,0 +1,138 @@
+* {
+    --main-color: #2A9D8F;
+    --font-color : white;
+    --border-radius: 5px;
+    --section-padding : 3%;
+    --section-margin: 4%;
+    --text-shadow: 2px 1px black;
+}
+
+.title {
+    background-color: var(--main-color);
+    color: var(--font-color);
+    text-align: center;
+    margin-bottom: var(--section-margin);
+    padding: var(--section-padding);
+    border-radius: var(--border-radius);
+}
+
+.startButton, .submitButton, .nextQuestionButton {
+    text-align: center;
+    color: var(--font-color);
+    background-color: var(--main-color);
+    padding: 9px 15px;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    margin: var(--section-margin);
+}
+
+.nextQuestionButton, .submitButton {
+    display: none;
+}
+
+.wrongRight {
+    display:none;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: var(--text-shadow);
+}
+
+.right{
+    display: block;
+    color: green;
+}
+
+.wrong{
+    display:block;
+    color: red;
+}
+
+.main, .result {
+    background-color: var(--main-color);
+    color: var(--font-color);
+    border-radius: var(--border-radius);
+    padding: var(--section-padding);
+    display: none;
+}
+.questionNumber {
+    text-align: center;
+    margin-bottom: var(--section-margin);
+}
+
+.divInput {
+    padding: var(--section-padding);
+    margin: 1%;
+}
+
+.radio, .radio+label {
+    padding: 5px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.infosReponse {
+    text-align: center;
+    color: var(--font-color);
+    margin-bottom: 2%;
+    margin-top: 2%;
+    background-color: #404040;
+    border-radius: var(--border-radius);
+    padding: var(--section-padding);
+    display: none;
+}
+
+.goodInput {
+    background-color :green ;
+
+}
+
+.wrongInput {
+    background-color: red;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #61cabe;
+}
+
+button:active {
+    border: 1px solid black;
+    background-color: #61cabe;
+}
+
+.visible {
+    display: block;
+}
+
+input:hover, label:hover {
+    cursor: pointer;
+}
+
+.result, #question {
+    text-align: center;
+    font-size: 18px;
+}
+
+@media screen and (min-width: 800px){
+    * {
+    --section-margin: 1%;
+    --section-padding : 2%;
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .main {
+        padding: 1%;
+    }
+
+    .divInput {
+        text-align: center;
+    }
+}

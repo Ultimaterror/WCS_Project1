@@ -4,19 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Animaux</title>
+    <title>WCS Quizz Animaux</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <div class="title">WCS Quizz Animaux</div>
     
 
+    <div class="startButtonCard buttons">
+        <button class="startButton" onclick="start()">Démarrer</button>
+    </div>
 
+    <div class="main">
+        <div class="questionNumber">
+            <p>Question N° : <span id="questionNumber"></span> / <span id="quizLength"></span></p> 
+        </div>
+        <div>
+            <p id="question"></p>
+        </div>
+        <div class="wrongRight"></div>
+        <form class="radios" id="test">
+            <div class="divInput" id="inputRadio" value="essai value">
+                <input id="radio1" class="radio" type="radio" name="inputRadio" value="1">
+                <label id="label1" for="radio1"></label>
+            </div>
+            <div class="divInput">
+                <input id="radio2" class="radio" type="radio" name="inputRadio" value="2">
+                <label id="label2" for="radio2"></label>
+            </div>
+            <div class="divInput">
+                <input id="radio3" class="radio" type="radio" name="inputRadio" value="3">
+                <label id="label3" for="radio3"></label>
+            </div>
+            <div class="divInput">
+                <input id="radio4" class="radio" type="radio" name="inputRadio" value="4">
+                <label id="label4" for="radio4"></label>
+            </div>
+            
+        </form>
+    </div>
 
+    <div class="infosReponse">
+        <div class="infoTitre">
+            Informations complémentaires
+        </div>
+        <div id="infoDiv"></div>
+    </div>
 
+    <div class="buttons" id="buttons">
+        <button class="submitButton" onclick="checkAnswer()">Soumettre</button>
+        <button type="button" class="nextQuestionButton" onclick="nextQuestion()">Question suivante</button>
+    </div>
 
-
-
-
+    <div class="result"></div>
+    
     <script src="script.js"></script>
 </body>
 </html>
