@@ -85,8 +85,7 @@
 }
 
 .goodInput {
-    background-color :green ;
-
+    background-color :green;
 }
 
 .wrongInput {
@@ -114,6 +113,12 @@ input:hover, label:hover {
 .result, #question {
     text-align: center;
     font-size: 18px;
+}
+
+@media screen and (max-width: 799px){
+    .hidePhone {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 800px){
