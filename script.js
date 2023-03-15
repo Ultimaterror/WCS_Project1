@@ -1,42 +1,21 @@
 let db = [
     {
         question: "Comment s'appelle la peur d'être regardé par un canard ?",
-        label1: "L'hippophobie",
-        inputValue1: "hippophobie",
-        label2: "L'anatidaephobie",
-        inputValue2: "anatidaephobie",
-        label3: "La cynophobie",
-        inputValue3: "cynophobie",
-        label4: "L'arachnophobie'",
-        inputValue4: "arachnophobie",
-        goodAnswer: "anatidaephobie",
+        labels: ["L'hippophobie", "L'anatidaephobie", "La cynophobie", "L'arachnophobie"],
+        goodAnswer: 2,
         infos: "On ne sait jamais si un canard est dans le coin et qu'il vous regarde du coin de l'oeil"
     },
     {
         question: "Quel animal produit du lait de couleur rose ?",
-        label1: "Le flamant rose",
-        inputValue1: "flamantRose",
-        label2: "L'hippopotame",
-        inputValue2: "hippopotame",
-        label3: "Le cochon",
-        inputValue3: "cochon",
-        label4: "Le babouin bleu",
-        inputValue4: "babouinBleu",
-        goodAnswer: "hippopotame",
+        labels: ["Le flamant rose", "L'hippopotame", "Le cochon", "Le babouin bleu"],
+        goodAnswer: 2,
         infos: " La raison ? L'hippopotame sécrète deux types d'acides, l'acide hipposudoric et l'acide norhipposudoric. Le premier est de couleur rouge vif, alors que le deuxième est de couleur orange vif"
 
     },
     {
         question: "Quelle espèce de requin n'existe pas ?",
-        label1: "Le requin à lunettes",
-        inputValue1: "requinLunettes",
-        label2: "Le requin bull-dog",
-        inputValue2: "requinBullDog",
-        label3: "Le requin citron",
-        inputValue3: "leRequinCitron",
-        label4: "Le requin lutin",
-        inputValue4: "requinLutin",
-        goodAnswer: "requinLunettes",
+        labels: ["Le requin à lunettes", "Le requin bull-dog", "Le requin citron", "Le requin lutin"],
+        goodAnswer: 1,
         infos: "Savez-vous qu'il existe aussi le requin lézard, le requin taureau, le requin dormeur, le requin vache ou encore le squale à peau douce."
     }
 ]
@@ -56,14 +35,17 @@ let form = document.querySelector("form");
 
 
 let finalResult = 0;
-let rightAnswer = document.getElementById('vrai');
-let wrongAnswer = document.getElementById('faux');
-let bonneReponse = document.getElementById('#');
-let mauvaiseReponses = document.getElementById('#');
+
+let rightText = document.getElementById('vrai');
+let wrongText = document.getElementById('faux');
+
+let infoArea = document.querySelector('.infosReponse')
 let infoDiv = document.getElementById('infoDiv');
 
 
 function start() {
+    const startButtonCard = document.getElementsByClassName("startButtonCard");
+    startButtonCard.remove();
     nextQuestion();
 }
 
@@ -91,30 +73,11 @@ function showQuestion() {
     let question = document.getElementById("question");
     question.innerText = quiz[i].question;
 
-    let radio1 = document.getElementById("radio1");
-    radio1.value = quiz[i].inputValue1;
-
-    let label1 = document.getElementById("label1");
-    label1.innerText = quiz[i].label1;
-
-    let radio2 = document.getElementById("radio2");
-    radio2.value = quiz[i].inputValue2;
-
-    let label2 = document.getElementById("label2");
-    label2.innerText = quiz[i].label2;
-
-    let radio3 = document.getElementById("radio3");
-    radio3.value = quiz[i].inputValue3;
-
-    let label3 = document.getElementById("label3");
-    label3.innerText = quiz[i].label3;
-
-    let radio4 = document.getElementById("radio4");
-    radio4.value = quiz[i].inputValue4;
-
-    let label4 = document.getElementById("label4");
-    label4.innerText = quiz[i].label4;
-
+    for (let index = 0; index < quiz[i].labels.length; index++) {
+        const element = quiz[i].labels[index]; // récupère le texte dans les questions
+        let label = document.getElementById("label"+(index+1))  //je récupère mon label dans l'HTML
+        label.innerText = element; //change le label
+    }
 }
 
 
@@ -128,7 +91,7 @@ function showQuestion() {
 
 
 const nextQuestionButton = document.getElementById('questionSuivanteButton');
-nextQuestionButton.disabled = true;
+// nextQuestionButton.disabled = true;
 
 let submitButton = document.getElementById("submitButton");
 
@@ -137,19 +100,20 @@ function checkAnswer() {
     let answer = form.elements.inputRadio.value;
     //console.log(answer);
     if (answer === "") {
-        // console.log("passe pas");
+        // Message d'erreur
         return
     }
-    // console.log("passe");
 
     if (answer == quiz[i].goodAnswer) {
         // Si bonne réponse
 
         // Afficher le texte "bonne réponse"
-        rightAnswer.classList.add('vraiText');
+        rightText.classList.add('visible');
 
         // Mettre la réponse en vert
-        reponseSelectioner.classList.add('bonneReponse');
+        let bonneReponse = document.getElementById("label"+quiz[i].goodAnswer);
+        bonneReponse.classList.add('bonneReponse');
+        console.log(bonneReponse);
 
         // Ajouter au compteur
         addFinalResult();
@@ -158,12 +122,14 @@ function checkAnswer() {
         // Si mauvaise réponse
 
         // Afficher le texte "mauvaise réponse"
-        wrongAnswer.classList.add('fauxText');
+        wrongText.classList.add('visible');
 
         // Mettre la mauvaise réponse en rouge
-        reponseSelectioner.classList.add('mauvaiseReponse');
+        let mauvaiseReponse = document.getElementById("label"+answer);
+        mauvaiseReponse.classList.add('mauvaiseReponse');
 
         // Mettre la bonne réponse en vert
+        let bonneReponse = document.getElementById("label"+quiz[i].goodAnswer);
         bonneReponse.classList.add('bonneReponse');
 
 
@@ -174,9 +140,10 @@ function checkAnswer() {
     // Affiche la div infos
     let infoP = document.createElement('p');
 
+    infoArea.classList.add('visible')
     infoDiv.appendChild(infoP);
-    infoP.classList.add('infoM');
-    infoP.innerHTML = quiz.infos;
+    infoP.innerHTML = quiz[i].infos;
+
 
 
     // Le bouton question suivante est disponible
@@ -213,6 +180,12 @@ function showFinalResult() {
 
 
 
+
+
+
+
+
+
 // Function pour colorer les réponses
 //
 // function colorReponse() {
@@ -241,6 +214,7 @@ submitButton.addEventListener('click', () => {
 // function affiche texte bonne ou mauvaise reponse.
 
 
+
 function textAnswer() {
      if (rightAnswer === true) {
          rightAnswer.classList.add('vraiText');
@@ -248,3 +222,12 @@ function textAnswer() {
          wrongAnswer.classList.add('fauxText');
      }
  }
+
+// function textAnswer() {
+//     if (rightText === true) {
+//         rightText.classList.add('vraiText');
+//     } else {
+//         wrongText.classList.add('fauxText');
+//     }
+// }
+
