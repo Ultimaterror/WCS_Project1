@@ -42,7 +42,7 @@ let wrongRightText = document.querySelector('.wrongRight');
 
 let infoArea = document.querySelector('.infosReponse');
 let infoDiv = document.getElementById('infoDiv');
-let main = document.querySelector(".questions");
+let main = document.querySelector(".main");
 
 
 function start() {
