@@ -3,13 +3,13 @@ let db = [
         question: "Comment s'appelle la peur d'être regardé par un canard ?",
         labels: ["L'hippophobie", "L'anatidaephobie", "La cynophobie", "L'arachnophobie"],
         goodAnswer: 2,
-        infos: "On ne sait jamais si un canard est dans le coin et qu'il vous regarde du coin de l'oeil"
+        infos: "On ne sait jamais si un canard est dans le coin et qu'il vous regarde du coin de l'oeil."
     },
     {
         question: "Quel animal produit du lait de couleur rose ?",
         labels: ["Le flamant rose", "L'hippopotame", "Le cochon", "Le babouin bleu"],
         goodAnswer: 2,
-        infos: " La raison ? L'hippopotame sécrète deux types d'acides, l'acide hipposudoric et l'acide norhipposudoric. Le premier est de couleur rouge vif, alors que le deuxième est de couleur orange vif"
+        infos: " La raison ? L'hippopotame sécrète deux types d'acides, l'acide hipposudoric et l'acide norhipposudoric. Le premier est de couleur rouge vif, alors que le deuxième est de couleur orange vif."
 
     },
     {
@@ -36,16 +36,19 @@ let form = document.querySelector("form");
 
 let finalResult = 0;
 
-let rightText = document.getElementById('vrai');
-let wrongText = document.getElementById('faux');
+// let rightText = document.getElementById('vrai');
+// let wrongText = document.getElementById('faux');
+let wrongRightText = document.querySelector('.wrongRight');
 
-let infoArea = document.querySelector('.infosReponse')
+let infoArea = document.querySelector('.infosReponse');
 let infoDiv = document.getElementById('infoDiv');
+let main = document.querySelector(".questions");
 
 
 function start() {
-    const startButtonCard = document.getElementsByClassName("startButtonCard");
+    const startButtonCard = document.querySelector(".startButtonCard");
     startButtonCard.remove();
+    main.classList.add('visible');
     nextQuestion();
 }
 
@@ -53,13 +56,33 @@ let i = -1;
 
 function nextQuestion() {
     i++;
+    infoArea.classList.remove('visible');
+
+    //bouton "question suivante" disparait
+    nextQuestionButton.disabled = true;
+    nextQuestionButton.classList.remove('visible');
+
+    wrongRightText.classList.remove('wrong');
+    wrongRightText.classList.remove('right');
+    wrongRightText.innerHTML = "";
+
+    infoArea.classList.remove('visible');
+
     if (i < quiz.length) {
         showQuestion();
         //bouton "submit" apparait
-        submitButton.disable = false;
-        //bouton "question suivante" disparait
-        nextQuestion.disabled = true;
+        submitButton.disabled = false;
+        submitButton.classList.add('visible');
+
+        // rightText.classList.remove('visible');
+        // wrongText.classList.remove('visible');
+
+        if (infoDiv.childElementCount > 0) {
+            infoDiv.removeChild(infoDiv.children[0])
+        }
+
     } else {
+        main.classList.remove('visible');
         showFinalResult()
     }
 }
@@ -75,8 +98,11 @@ function showQuestion() {
 
     for (let index = 0; index < quiz[i].labels.length; index++) {
         const element = quiz[i].labels[index]; // récupère le texte dans les questions
-        let label = document.getElementById("label"+(index+1))  //je récupère mon label dans l'HTML
+        let label = document.getElementById("label" + (index + 1))  //je récupère mon label dans l'HTML
         label.innerText = element; //change le label
+        //pour enlever la couleur des labels
+        label.classList.remove('goodInput');
+        label.classList.remove('wrongInput');
     }
 }
 
@@ -90,10 +116,10 @@ function showQuestion() {
 
 
 
-const nextQuestionButton = document.getElementById('questionSuivanteButton');
+const nextQuestionButton = document.querySelector('.nextQuestionButton');
 // nextQuestionButton.disabled = true;
 
-let submitButton = document.getElementById("submitButton");
+let submitButton = document.querySelector(".submitButton");
 
 function checkAnswer() {
     // Verifier qu'il y a un input selectionné
@@ -108,12 +134,15 @@ function checkAnswer() {
         // Si bonne réponse
 
         // Afficher le texte "bonne réponse"
-        rightText.classList.add('visible');
+        // rightText.classList.add('visible');
+        wrongRightText.classList.add('right');
+        wrongRightText.innerHTML = "Bonne réponse 😎";
+
 
         // Mettre la réponse en vert
-        let bonneReponse = document.getElementById("label"+quiz[i].goodAnswer);
-        bonneReponse.classList.add('bonneReponse');
-        console.log(bonneReponse);
+        let goodInput = document.getElementById("label" + quiz[i].goodAnswer);
+        goodInput.classList.add('goodInput');
+        // console.log(goodInput);
 
         // Ajouter au compteur
         addFinalResult();
@@ -122,15 +151,18 @@ function checkAnswer() {
         // Si mauvaise réponse
 
         // Afficher le texte "mauvaise réponse"
-        wrongText.classList.add('visible');
+        // wrongText.classList.add('visible');
+        wrongRightText.classList.add('wrong');
+        wrongRightText.innerHTML = "Mauvaise réponse 😕";
+
 
         // Mettre la mauvaise réponse en rouge
-        let mauvaiseReponse = document.getElementById("label"+answer);
-        mauvaiseReponse.classList.add('mauvaiseReponse');
+        let wrongInput = document.getElementById("label" + answer);
+        wrongInput.classList.add('wrongInput');
 
         // Mettre la bonne réponse en vert
-        let bonneReponse = document.getElementById("label"+quiz[i].goodAnswer);
-        bonneReponse.classList.add('bonneReponse');
+        let goodInput = document.getElementById("label" + quiz[i].goodAnswer);
+        goodInput.classList.add('goodInput');
 
 
 
@@ -140,16 +172,19 @@ function checkAnswer() {
     // Affiche la div infos
     let infoP = document.createElement('p');
 
-    infoArea.classList.add('visible')
+    infoArea.classList.add('visible');
     infoDiv.appendChild(infoP);
     infoP.innerHTML = quiz[i].infos;
 
 
 
     // Le bouton question suivante est disponible
-    nextQuestion.disabled = false;//on rend le bouton "question suivante" visible/cliquable
+    nextQuestionButton.disabled = false;
+    nextQuestionButton.classList.add('visible');
+
     //bouton "submit" disparait
-    submitButton.disable = true;
+    submitButton.disabled = true;
+    submitButton.classList.remove('visible');
 
 }
 
@@ -174,7 +209,9 @@ function showFinalResult() {
     } else {
         finalSentence = "Bien joué ! Tu t'y connais en animaux !";
     }
-    // return DOM.innerText = finalSentence;
+    let resultDiv = document.querySelector(".result");
+    resultDiv.classList.add('visible');
+    return resultDiv.innerHTML = finalSentence;
 }
 
 
@@ -189,39 +226,30 @@ function showFinalResult() {
 // Function pour colorer les réponses
 //
 // function colorReponse() {
-//     if (reponseSelectioner === mauvaiseReponses) {
-//         reponseSelectioner.classList.add('mauvaiseReponse');
-//         bonneReponse.classList.add('bonneReponse');
+//     if (reponseSelectioner === wrongInputs) {
+//         reponseSelectioner.classList.add('wrongInput');
+//         goodInput.classList.add('goodInput');
 //     } else {
-//         reponseSelectioner.classList.add('bonneReponse');
+//         reponseSelectioner.classList.add('goodInput');
 //     }
 // }
 
 
 
 
-submitButton.addEventListener('click', () => {
-    let infoDiv = document.getElementById('infoDiv');
-    let infoP = document.createElement('p');
+// submitButton.addEventListener('click', () => {
+//     let infoDiv = document.getElementById('infoDiv');
+//     let infoP = document.createElement('p');
 
-    infoDiv.appendChild(infoP);
-    infoP.classList.add('infoM');
-    infoP.innerHTML = quiz.infos;
+//     infoDiv.appendChild(infoP);
+//     infoP.classList.add('infoM');
+//     infoP.innerHTML = quiz.infos;
 
-})
+// })
 
 
 // function affiche texte bonne ou mauvaise reponse.
 
-
-
-function textAnswer() {
-     if (rightAnswer === true) {
-         rightAnswer.classList.add('vraiText');
-     } else {
-         wrongAnswer.classList.add('fauxText');
-     }
- }
 
 // function textAnswer() {
 //     if (rightText === true) {
