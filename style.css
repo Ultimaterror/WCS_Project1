@@ -138,6 +138,37 @@ input:hover, label:hover {
     }
 
     .divInput {
-        text-align: center;
+       text-align: center;
+       
+    }
+    
+    label {
+        display: flex;
+        background-color: white;
+        border:3px solid white;
+        border-radius: 48px;
+        width: 70%;
+        color:#2A9D8F;
+    }
+   /* quand l'input est check le label gagne une border */
+     input:checked + label, label:hover {
+        background-color:#2A9D8F;
+        color:white;
+    }
+    input{
+        display: none;
+    }
+    
+    input:checked + .goodInput {
+    background-color :green ;
+    color: white;
+   }
+
+    input:checked + .wrongInput {
+        background-color: red;
+        color: white;
+    }
+    .goodInput{
+        color: white;
     }
 }
