@@ -17,9 +17,39 @@ let db = [
         labels: ["Le requin à lunettes", "Le requin bull-dog", "Le requin citron", "Le requin lutin"],
         goodAnswer: 1,
         infos: "Savez-vous qu'il existe aussi le requin lézard, le requin taureau, le requin dormeur, le requin vache ou encore le squale à peau douce."
+    },
+    {
+        question: "Lequel de ces éléments anatomiques ne permet PAS de distinguer les éléphants d'Asie et ceux d'Afrique ?",
+        labels: ["La longueur de la trompe", "la taille des oreilles", "la forme de la trompe", "la taille des défenses"],
+        goodAnswer: 1,
+        infos: "Savez-vous que leur peau fait environ 2,5 cm d'épaisseur"
+    },
+    {
+        question: "le dindon glougloute, le cheval hennit, le chien aboie et la cigale...",
+        labels: ["Jase", "Grisolle", "Stridule", "Blatère"],
+        goodAnswer: 3,
+        infos: "Le chameau blatère, la pie jase et l'alouette grisolle"
+    },
+    {
+        question: "Quel animal manipule des cailloux pour casser des coquillages ?",
+        labels: ["la loutre", "le manchot", "le morse", "le raton laveur"],
+        goodAnswer: 1,
+        infos: "la loutre de mer possède une densité de poils de 170 000 poils au cm2 alors que l'homme n'a que 20 000 poils sur sa tête"
+    },
+    {
+        question: "Où se situent les glandes sudoripares d'un chien ?",
+        labels: ["Dans la truffe", "Sur la langue", "Sous les pattes", "Sur la queue"],
+        goodAnswer: 3,
+        infos: "Elles permettent de réguler la température et de suer. C'est pourquoi il ne transpire pas."
+    },
+    {
+        question: "Quel oiseau pond les oeufs les plus gros ?",
+        labels: ["La pie", "Le dodo", "L'autruche", "Le perroquet jaco"],
+        goodAnswer: 3,
+        infos: "un oeuf d'autruche pèse entre 1,2 et 1,8kg."
     }
 ]
-
+let quizLength = 8;
 let quiz = [];
 function randomize(number) {
     for (let index = 0; index < number; index++) {
@@ -28,7 +58,7 @@ function randomize(number) {
     console.log(quiz);
     return;
 }
-randomize(2);
+randomize(quizLength);
 
 let form = document.querySelector("form");
 // console.log(form);
@@ -46,6 +76,9 @@ let main = document.querySelector(".questions");
 
 
 function start() {
+    //on affiche le nombre total de questions à côté du numéro de la question actuelle :
+    const totalQuestions = document.getElementById("quizLength");
+    totalQuestions.innerHTML = quizLength;
     const startButtonCard = document.querySelector(".startButtonCard");
     startButtonCard.remove();
     main.classList.add('visible');
