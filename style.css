@@ -32,18 +32,18 @@
 
 .wrongRight {
     display:none;
-    justify-content: center;
+    text-align: center;
     font-weight: bold;
     text-shadow: var(--text-shadow);
 }
 
 .right{
-    display: initial;
+    display: block;
     color: green;
 }
 
 .wrong{
-    display:initial;
+    display:block;
     color: red;
 }
 
@@ -100,6 +100,7 @@ button:hover {
 
 button:active {
     border: 1px solid black;
+    background-color: #61cabe;
 }
 
 .visible {
@@ -129,5 +130,9 @@ input:hover, label:hover {
 
     .main {
         padding: 1%;
+    }
+
+    .divInput {
+        text-align: center;
     }
 }
