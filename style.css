@@ -14,9 +14,10 @@
     margin-bottom: var(--section-margin);
     padding: var(--section-padding);
     border-radius: var(--border-radius);
+    font-size: 26px;
 }
 
-.startButton, .submitButton, .nextQuestionButton {
+button {
     text-align: center;
     color: var(--font-color);
     background-color: var(--main-color);
@@ -37,14 +38,14 @@
     text-shadow: var(--text-shadow);
 }
 
-.right {
-    display: block;
-    color: green;
-}
-
 .wrong {
     display: block;
     color: red;
+}
+
+.right {
+    display: block;
+    color: green;
 }
 
 .main, .result {
@@ -55,7 +56,7 @@
     display: none;
 }
 
-.questionNumber {
+.status {
     text-align: center;
     margin-bottom: var(--section-margin);
 }
@@ -70,7 +71,7 @@
     padding: 5px;
 }
 
-.buttons {
+.divButtons {
     display: flex;
     justify-content: center;
 }
