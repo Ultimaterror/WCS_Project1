@@ -10,14 +10,9 @@
 </head>
 <body>
     <div class="title">WCS Quizz Animaux</div>
-    
-
-    <div class="startButtonCard buttons">
-        <button class="startButton" onclick="start()">Démarrer</button>
-    </div>
 
     <div class="main">
-        <div class="questionNumber">
+        <div class="status">
             <p>Question N° : <span id="questionNumber"></span> / <span id="quizLength"></span></p> 
         </div>
         <div>
@@ -54,12 +49,16 @@
         <div id="infoDiv"></div>
     </div>
 
-    <div class="buttons" id="buttons">
+    <div class="divButtons">
         <button class="submitButton" onclick="checkAnswer()">Soumettre</button>
-        <button type="button" class="nextQuestionButton" onclick="nextQuestion()">Question suivante</button>
+        <button class="nextQuestionButton" onclick="nextQuestion()">Question suivante</button>
     </div>
 
     <div class="result"></div>
+
+    <div class="startButtonCard divButtons">
+        <button onclick="start()">Démarrer</button>
+    </div>
     
     <script src="script.js"></script>
 </body>

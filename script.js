@@ -20,8 +20,8 @@ let db = [
     },
     {
         statement: "Lequel de ces éléments anatomiques ne permet PAS de distinguer les éléphants d'Asie et ceux d'Afrique ?",
-        labels: ["La longueur de la trompe", "La taille des oreilles", "La forme de la trompe", "La taille des défenses"],
-        goodAnswer: 1,
+        labels: ["La taille des oreilles", "La forme de la trompe", "La taille des défenses", "La longueur de la trompe"],
+        goodAnswer: 4,
         infos: "Savez-vous que leur peau fait environ 2,5 cm d'épaisseur."
     },
     {
@@ -50,7 +50,7 @@ let db = [
     }
 ]
 
-let quizLength = 3;
+let quizLength = 5;
 let quiz = [];
 function randomize(number) {
     for (let index = 0; index < number; index++) {
@@ -58,40 +58,41 @@ function randomize(number) {
     }
     return;
 }
-randomize(quizLength);
 
-let form = document.querySelector("form");
-
+let qi = -1;
 let finalResult = 0;
 
 let main = document.querySelector(".main");
+let form = document.querySelector("form");
 let wrongRightText = document.querySelector('.wrongRight');
+
 let infoArea = document.querySelector('.infosReponse');
 let infoDiv = document.getElementById('infoDiv');
+let resultDiv = document.querySelector(".result");
+
+const startButtonCard = document.querySelector(".startButtonCard");
 let nextQuestionButton = document.querySelector('.nextQuestionButton');
 nextQuestionButton.disabled = true;
 let submitButton = document.querySelector(".submitButton");
 submitButton.disabled = true;
 
-
 function start() {
+    randomize(quizLength);
+
     //on affiche le nombre total de questions à côté du numéro de la question actuelle :
     const totalQuestions = document.getElementById("quizLength");
     totalQuestions.innerHTML = quizLength;
 
     // on supprime le bouton start
-    const startButtonCard = document.querySelector(".startButtonCard");
-    startButtonCard.remove();
+    startButtonCard.firstElementChild.remove();
 
     // on affiche la question
     main.classList.add('visible');
     nextQuestion();
 }
 
-let i = -1;
-
 function nextQuestion() {
-    i++;
+    qi++;
 
     // Cachez la div infos
     infoArea.classList.remove('visible');
@@ -105,34 +106,32 @@ function nextQuestion() {
     wrongRightText.classList.remove('right');
     wrongRightText.innerHTML = "";
 
-    infoArea.classList.remove('visible');
-
-    if (i < quiz.length) {
-        showQuestion();
+    if (qi < quiz.length) {
         //bouton "submit" apparait
         submitButton.disabled = false;
         submitButton.classList.add('visible');
-
+        
         if (infoDiv.childElementCount > 0) {
             infoDiv.removeChild(infoDiv.children[0])
         }
+        return showQuestion();
 
     } else {
         main.classList.remove('visible');
-        showFinalResult()
+        return showFinalResult()
     }
 }
 
 function showQuestion() {
 
     let qNumber = document.getElementById("questionNumber");
-    qNumber.innerText = i + 1;
+    qNumber.innerText = qi + 1;
 
     let question = document.getElementById("question");
-    question.innerText = quiz[i].statement;
+    question.innerText = quiz[qi].statement;
 
-    for (let index = 0; index < quiz[i].labels.length; index++) {
-        const element = quiz[i].labels[index]; // récupère le texte dans les questions
+    for (let index = 0; index < quiz[qi].labels.length; index++) {
+        const element = quiz[qi].labels[index]; // récupère le texte dans les questions
         let label = document.getElementById("label" + (index + 1))  //je récupère mon label dans l'HTML
         label.innerText = element; //change le label
         //pour enlever la couleur des labels
@@ -140,6 +139,7 @@ function showQuestion() {
         label.classList.remove('wrongInput');
         label.parentElement.classList.remove('hidePhone');
         label.previousElementSibling.disabled = false;
+        label.previousElementSibling.checked = false;
     }
 }
 
@@ -148,26 +148,26 @@ function checkAnswer() {
 
     // Verifier qu'il y a un input selectionné
     if (answer === "") {
+        wrongRightText.classList.add("wrong")
         return wrongRightText.innerHTML = "Veuillez sélectionner une réponse."
     }
 
-    for (let index = 0; index < quiz[i].labels.length; index++) {
+    for (let index = 0; index < quiz[qi].labels.length; index++) {
         let label = document.getElementById("label" + (index + 1))  //je récupère mon label dans l'HTML
         //pour cacher les labels sur phone
         label.parentElement.classList.add('hidePhone');
         label.previousElementSibling.disabled = true;
     }
 
-    if (answer == quiz[i].goodAnswer) {
+    if (answer == quiz[qi].goodAnswer) {
         // Si bonne réponse
 
         // Afficher le texte "bonne réponse"
         wrongRightText.classList.add('right');
         wrongRightText.innerHTML = "Bonne réponse 😎";
-        
-        
+
         // Mettre la réponse en vert
-        let goodInput = document.getElementById("label" + quiz[i].goodAnswer);
+        let goodInput = document.getElementById("label" + quiz[qi].goodAnswer);
         goodInput.parentElement.classList.remove('hidePhone');
         goodInput.classList.add('goodInput');
 
@@ -188,7 +188,7 @@ function checkAnswer() {
         wrongInput.classList.add('wrongInput');
 
         // Mettre la bonne réponse en vert
-        let goodInput = document.getElementById("label" + quiz[i].goodAnswer);
+        let goodInput = document.getElementById("label" + quiz[qi].goodAnswer);
         goodInput.parentElement.classList.remove('hidePhone');
         goodInput.classList.add('goodInput');
     }
@@ -197,24 +197,26 @@ function checkAnswer() {
     let infoP = document.createElement('p');
     infoArea.classList.add('visible');
     infoDiv.appendChild(infoP);
-    infoP.innerHTML = quiz[i].infos;
+    infoP.innerHTML = quiz[qi].infos;
 
     // Le bouton question suivante est disponible
     nextQuestionButton.disabled = false;
     nextQuestionButton.classList.add('visible');
 
     // Changez le texte du bouton si il n'y a plus de question
-    if (i + 1 === quizLength) {
+    if (qi + 1 === quizLength) {
         nextQuestionButton.innerText = "Résultat final"
     }
 
     //bouton "submit" disparait
     submitButton.disabled = true;
     submitButton.classList.remove('visible');
+
+    return
 }
 
 function addFinalResult() {
-    finalResult++;
+    return finalResult++;
 }
 
 // Une fois toutes les questions finies
@@ -230,13 +232,35 @@ function showFinalResult() {
     } else {
         finalSentence.innerText = "Bien joué ! Tu t'y connais en animaux !";
     }
+
     let finalScore = document.createElement('p');
     finalScore.innerText = "Score final : " + finalResult + " / " + quizLength;
 
-    let resultDiv = document.querySelector(".result");
     resultDiv.classList.add('visible');
     resultDiv.appendChild(finalSentence);
     resultDiv.appendChild(finalScore);
 
-    return
+    let restartButton = document.createElement('button');
+    restartButton.onclick = function () { restart() };
+    restartButton.innerText = "Redémarrer";
+    return startButtonCard.appendChild(restartButton);
+}
+
+
+function restart() {
+    // remettre le score à 0
+    finalResult = 0;
+    qi = -1;
+
+    // reset la db
+    while (quiz.length > 0) {
+        db.push(quiz.splice(0, 1)[0]);
+    }
+
+    // Cachez la div result
+    resultDiv.innerHTML = "";
+    resultDiv.classList.remove('visible');
+
+    // lancer la fonction start
+    return start();
 }
