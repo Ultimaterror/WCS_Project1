@@ -1,8 +1,8 @@
 * {
     --main-color: #2A9D8F;
-    --font-color : white;
+    --font-color: white;
     --border-radius: 5px;
-    --section-padding : 3%;
+    --section-padding: 3%;
     --section-margin: 4%;
     --text-shadow: 2px 1px black;
 }
@@ -31,19 +31,19 @@
 }
 
 .wrongRight {
-    display:none;
+    display: none;
     text-align: center;
     font-weight: bold;
     text-shadow: var(--text-shadow);
 }
 
-.right{
+.right {
     display: block;
     color: green;
 }
 
-.wrong{
-    display:block;
+.wrong {
+    display: block;
     color: red;
 }
 
@@ -54,6 +54,7 @@
     padding: var(--section-padding);
     display: none;
 }
+
 .questionNumber {
     text-align: center;
     margin-bottom: var(--section-margin);
@@ -62,6 +63,7 @@
 .divInput {
     padding: var(--section-padding);
     margin: 1%;
+    text-align: center;
 }
 
 .radio, .radio+label {
@@ -82,14 +84,6 @@
     border-radius: var(--border-radius);
     padding: var(--section-padding);
     display: none;
-}
-
-.goodInput {
-    background-color :green;
-}
-
-.wrongInput {
-    background-color: red;
 }
 
 button:hover {
@@ -115,19 +109,56 @@ input:hover, label:hover {
     font-size: 18px;
 }
 
-@media screen and (max-width: 799px){
+label {
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+    border: 3px solid white;
+    border-radius: 48px;
+    width: 120px;
+    color: #2A9D8F;
+}
+
+/* quand l'input est check le label gagne une border */
+input:checked + label, label:hover {
+    background-color: #2A9D8F;
+    color: white;
+}
+
+input {
+    display: none;
+}
+
+input:checked + .goodInput {
+    background-color: green;
+    color: white;
+}
+
+input:checked + .wrongInput {
+    background-color: red;
+    color: white;
+}
+
+.goodInput {
+    background-color: green;
+    color: white;
+}
+
+@media screen and (max-width: 799px) {
     .hidePhone {
         display: none;
     }
 }
 
-@media screen and (min-width: 800px){
+@media screen and (min-width: 800px) {
     * {
-    --section-margin: 1%;
-    --section-padding : 2%;
+        --section-margin: 1%;
+        --section-padding: 2%;
     }
 
     form {
+        text-align: center;
+        width: 60%;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
@@ -137,38 +168,8 @@ input:hover, label:hover {
         padding: 1%;
     }
 
-    .divInput {
-       text-align: center;
-       
-    }
-    
-    label {
+    #centerForm {
         display: flex;
-        background-color: white;
-        border:3px solid white;
-        border-radius: 48px;
-        width: 70%;
-        color:#2A9D8F;
-    }
-   /* quand l'input est check le label gagne une border */
-     input:checked + label, label:hover {
-        background-color:#2A9D8F;
-        color:white;
-    }
-    input{
-        display: none;
-    }
-    
-    input:checked + .goodInput {
-    background-color :green ;
-    color: white;
-   }
-
-    input:checked + .wrongInput {
-        background-color: red;
-        color: white;
-    }
-    .goodInput{
-        color: white;
+        justify-content: center;
     }
 }
